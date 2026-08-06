@@ -1,0 +1,3 @@
+{'Faculty ID': 103, 'Faculty Name': 'Charlie', 'Department': 'IT', 'Publications': 50, 'H-index': 22, 'Budget': 150000, 'Collaboration': 90, 'Research Score': 53.6}
+{'Faculty ID': 101, 'Faculty Name': 'Alice', 'Department': 'CSE', 'Publications': 40, 'H-index': 18, 'Budget': 120000, 'Collaboration': 80, 'Research Score': 45.4}
+{'Faculty ID': 102, 'Faculty Name': 'Bob', 'Department': 'ECE', 'Publications': 30, 'H-index': 15, 'Budget': 95000, 'Collaboration': 70, 'Research Score': 37.5}
