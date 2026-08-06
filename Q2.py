@@ -29,33 +29,33 @@ machines = [
     }
 ]
 
-# 1. Calculate Machine Efficiency
 
-print("Machine Efficiency")
-
-for m in machines:
-    efficiency = m["Units Produced"] / (m["Operating Hours"] - m["Downtime"])
-    m["Efficiency"] = efficiency
-    print(m["Machine ID"], "=", round(efficiency, 2))
-
-# 2. Calculate Production Cost Per Unit
-
-print("\nProduction Cost Per Unit")
+print("========== MACHINE EFFICIENCY ==========")
 
 for m in machines:
-    cost = m["Maintenance Cost"] / m["Units Produced"]
-    m["Cost Per Unit"] = cost
-    print(m["Machine ID"], "=", round(cost, 2))
+    m["Efficiency"] = m["Units Produced"] / (m["Operating Hours"] - m["Downtime"])
+    print(m["Machine ID"], "=", round(m["Efficiency"], 2))
 
-# 3. Identify Inefficient Machines
 
-print("\nInefficient Machines")
+print("\n========== PRODUCTION COST PER UNIT ==========")
+
+for m in machines:
+    m["Cost Per Unit"] = m["Maintenance Cost"] / m["Units Produced"]
+    print(m["Machine ID"], "=", round(m["Cost Per Unit"], 2))
+
+
+print("\n========== INEFFICIENT MACHINES ==========")
+
+found = False
 
 for m in machines:
     if m["Efficiency"] < 25:
         print(m["Machine ID"])
+        found = True
 
-# 4. Machine with Highest Maintenance Cost
+if not found:
+    print("No Inefficient Machines")
+
 
 highest = machines[0]
 
@@ -63,12 +63,10 @@ for m in machines:
     if m["Maintenance Cost"] > highest["Maintenance Cost"]:
         highest = m
 
-print("\nHighest Maintenance Cost")
-print(highest["Machine ID"], "-", highest["Maintenance Cost"])
-
-# 5. Plant-wise Efficiency
-
-print("\nPlant-wise Efficiency")
+print("\n========== HIGHEST MAINTENANCE COST ==========")
+print("Machine ID :", highest["Machine ID"])
+print("Maintenance Cost :", highest["Maintenance Cost"])
+print("\n========== PLANT-WISE EFFICIENCY ==========")
 
 plants = {}
 
@@ -85,19 +83,18 @@ for plant in plants:
     average = plants[plant][0] / plants[plant][1]
     print(plant, "=", round(average, 2))
 
-# 6. Machines Requiring Preventive Maintenance
 
-print("\nMachines Requiring Preventive Maintenance")
+
+print("\n========== PREVENTIVE MAINTENANCE ==========")
 
 for m in machines:
     if m["Maintenance Cost"] > 25000:
         print(m["Machine ID"])
 
-# 7. Sort Machines by Efficiency
 
 machines.sort(key=lambda x: x["Efficiency"], reverse=True)
 
-print("\nMachines Sorted by Efficiency")
+print("\n========== MACHINES SORTED BY EFFICIENCY ==========")
 
 rank = 1
 
@@ -105,31 +102,35 @@ for m in machines:
     print(rank, ".", m["Machine ID"], "-", round(m["Efficiency"], 2))
     rank += 1
 
-# 8. Generate Maintenance Report
 
-print("\nMaintenance Report")
+print("\n========== MAINTENANCE REPORT ==========")
 
 for m in machines:
-    print(m)
+    print("---------------------------------------")
+    print("Machine ID        :", m["Machine ID"])
+    print("Plant Name        :", m["Plant Name"])
+    print("Efficiency        :", round(m["Efficiency"], 2))
+    print("Cost Per Unit     :", round(m["Cost Per Unit"], 2))
+    print("Maintenance Cost  :", m["Maintenance Cost"])
 
-# 9. Save Report to File
 
 file = open("maintenance_report.txt", "w")
 
 for m in machines:
-    file.write(str(m))
-    file.write("\n")
+    file.write("---------------------------------------\n")
+    file.write("Machine ID       : " + m["Machine ID"] + "\n")
+    file.write("Plant Name       : " + m["Plant Name"] + "\n")
+    file.write("Efficiency       : " + str(round(m["Efficiency"], 2)) + "\n")
+    file.write("Cost Per Unit    : " + str(round(m["Cost Per Unit"], 2)) + "\n")
+    file.write("Maintenance Cost : " + str(m["Maintenance Cost"]) + "\n")
 
 file.close()
 
 print("\nMaintenance Report Saved Successfully")
 
-# 10. Read the Report
 
-print("\nReading Maintenance Report")
+print("\n========== READING MAINTENANCE REPORT ==========\n")
 
 file = open("maintenance_report.txt", "r")
-
 print(file.read())
-
 file.close()
