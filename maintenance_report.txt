@@ -1,0 +1,18 @@
+---------------------------------------
+Machine ID       : M103
+Plant Name       : Plant A
+Efficiency       : 28.57
+Cost Per Unit    : 3.33
+Maintenance Cost : 20000
+---------------------------------------
+Machine ID       : M101
+Plant Name       : Plant A
+Efficiency       : 27.78
+Cost Per Unit    : 5.0
+Maintenance Cost : 25000
+---------------------------------------
+Machine ID       : M102
+Plant Name       : Plant B
+Efficiency       : 26.67
+Cost Per Unit    : 7.5
+Maintenance Cost : 30000
